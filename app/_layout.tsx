@@ -6,6 +6,7 @@ import { Provider as PaperProvider } from "react-native-paper"
 
 export default function RootLayout() {
   //todo
+
   const scheme = useColorScheme()
 
   return (
