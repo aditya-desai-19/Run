@@ -30,3 +30,8 @@ export interface DurationProps {
   duration: string
   onChangeDuration: (text: string) => void
 }
+
+export interface AddNotesProps {
+  value: string
+  onChangeText: (text: string) => void
+}

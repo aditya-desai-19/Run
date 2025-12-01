@@ -17,12 +17,16 @@ export default function Duration({
         paddingHorizontal: 16,
       }}
     >
-      <Text>{"Duration"}</Text>
+      <Text variant="titleMedium">{"Duration"}</Text>
       <TextInput
         placeholder="In mins"
         keyboardType="decimal-pad"
         value={duration}
         onChangeText={onChangeDuration}
+        underlineColor="transparent"
+        activeOutlineColor="transparent"
+        activeUnderlineColor="transparent"
+        style={{ backgroundColor: "transparent" }}
       />
     </View>
   )

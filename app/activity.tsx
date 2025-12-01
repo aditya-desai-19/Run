@@ -1,9 +1,10 @@
+import AddNotes from "@/components/activity/add-notes"
 import DateDuration from "@/components/activity/date-duration"
 import InputLabel from "@/components/activity/input-label"
+import Title from "@/components/activity/title"
 import { TimeProps } from "@/components/activity/types"
 import { useState } from "react"
 import { View } from "react-native"
-import { TextInput } from "react-native-paper"
 
 export default function Activity() {
   const [title, setTitle] = useState<string>("")
@@ -14,6 +15,7 @@ export default function Activity() {
     minutes: 0,
   })
   const [duration, setDuration] = useState<string>("")
+  const [notes, setNotes] = useState<string>("")
 
   const onChangeTitle = (text: string) => {
     if (text.length > 25) return
@@ -37,9 +39,19 @@ export default function Activity() {
     setHoursAndMinutes(hm)
   }
 
+  const onNotesChange = (text: string) => {
+    setNotes(text)
+  }
+
   return (
     <View style={{ width: "100%" }}>
-      <InputLabel label="Title" value={title} onChangeText={onChangeTitle} />
+      <Title />
+      <InputLabel
+        label="Title"
+        value={title}
+        onChangeText={onChangeTitle}
+        placeholder="Add"
+      />
       <DateDuration
         date={date}
         hours={hoursAndMinutes.hours}
@@ -56,11 +68,7 @@ export default function Activity() {
         keyboardType="decimal-pad"
         placeholder="In km"
       />
-      <TextInput
-        placeholder="Add notes"
-        multiline
-        style={{ backgroundColor: "transparent" }}
-      />
+      <AddNotes value={notes} onChangeText={onNotesChange} />
     </View>
   )
 }

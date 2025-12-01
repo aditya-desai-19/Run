@@ -18,15 +18,18 @@ function InputLabelComponent({
         width: "100%",
         justifyContent: "space-between",
         alignItems: "center",
-        paddingHorizontal: 16,
+        padding: 16,
       }}
     >
-      <Text>{label}</Text>
+      <Text variant="titleMedium">{label}</Text>
       <TextInput
         value={value}
         onChangeText={onChangeText}
         keyboardType={keyboardType}
         placeholder={placeholder}
+        underlineColor="transparent"
+        activeOutlineColor="transparent"
+        activeUnderlineColor="transparent"
         style={{ backgroundColor: "transparent" }}
       />
     </View>
