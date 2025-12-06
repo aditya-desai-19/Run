@@ -11,6 +11,7 @@ export interface InputLabelProps {
   onChangeText: (text: string) => void
   keyboardType?: KeyboardTypeOptions
   placeholder?: string
+  isRequiredField?: boolean
 }
 
 export interface TimeProps {
@@ -27,7 +28,7 @@ export interface DateTimeProps {
 }
 
 export interface DurationProps {
-  duration: string
+  duration: number
   onChangeDuration: (text: string) => void
 }
 

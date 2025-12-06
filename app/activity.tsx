@@ -3,10 +3,10 @@ import DateDuration from "@/components/activity/date-duration"
 import InputLabel from "@/components/activity/input-label"
 import Title from "@/components/activity/title"
 import { TimeProps } from "@/components/activity/types"
-import { View } from "react-native"
-import dayjs from "dayjs"
 import { useActivityStore } from "@/zustand/store"
+import dayjs from "dayjs"
 import { useEffect } from "react"
+import { View } from "react-native"
 
 export default function Activity() {
   const dayjsObj = dayjs()
@@ -31,12 +31,12 @@ export default function Activity() {
     updateTitle(text)
   }
 
-  const onDistanceChange = (text: string) => {
-    updateDistance(text)
+  const onDistanceChange = (distance: string) => {
+    updateDistance(parseInt(distance))
   }
 
-  const onChangeDuration = (text: string) => {
-    updateDuration(text)
+  const onChangeDuration = (duration: string) => {
+    updateDuration(parseInt(duration))
   }
 
   const onConfirmDate = (date: Date) => {
@@ -52,6 +52,7 @@ export default function Activity() {
   }
 
   useEffect(() => {
+    updateDate(dayjsObj.toISOString())
     updateTime({
       hours: currHour,
       minutes: currMin,
@@ -70,6 +71,7 @@ export default function Activity() {
         value={title}
         onChangeText={onChangeTitle}
         placeholder="Add"
+        isRequiredField
       />
       <DateDuration
         date={date}
@@ -82,10 +84,11 @@ export default function Activity() {
       />
       <InputLabel
         label="Distance"
-        value={distance}
+        value={distance.toString()}
         onChangeText={onDistanceChange}
         keyboardType="decimal-pad"
         placeholder="In km"
+        isRequiredField
       />
       <AddNotes value={notes} onChangeText={onNotesChange} />
     </View>

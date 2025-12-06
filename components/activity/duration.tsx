@@ -18,11 +18,14 @@ export default function Duration({
         paddingHorizontal: 16,
       }}
     >
-      <Text variant="titleMedium">{"Duration"}</Text>
+      <Text variant="titleMedium">
+        {"Duration"}
+        <Text style={{ color: "red" }}>{"*"}</Text>
+      </Text>
       <TextInput
         placeholder="In mins"
         keyboardType="decimal-pad"
-        value={duration}
+        value={duration.toString()}
         onChangeText={onChangeDuration}
         underlineColor="transparent"
         activeUnderlineColor="transparent"

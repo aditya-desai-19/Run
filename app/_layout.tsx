@@ -4,17 +4,31 @@ import { Stack, useRouter } from "expo-router"
 import { useColorScheme } from "react-native"
 import { Button } from "react-native-paper"
 import { Provider as PaperProvider } from "react-native-paper"
+import { addRunData } from "../db/queries/run-data.js"
 
 export default function RootLayout() {
   //todo
-  const { state } = useActivityStore()
+  const { state, reset } = useActivityStore()
   const scheme = useColorScheme()
   const router = useRouter()
 
-  const onSave = () => {
-    //todo
-    console.log({ state })
-    router.push("/(tabs)")
+  const { title, time, date, distance, duration } = state
+  const disableSave =
+    title.length == 0 ||
+    time.hours < 0 ||
+    time.minutes < 0 ||
+    date.length == 0 ||
+    distance < 0 ||
+    duration < 0
+
+  const onSave = async () => {
+    try {
+      await addRunData(state)
+      router.push("/(tabs)")
+      reset()
+    } catch (error) {
+      console.log("Some error occurred")
+    }
   }
 
   return (
@@ -26,7 +40,7 @@ export default function RootLayout() {
           options={{
             title: "",
             headerRight: () => (
-              <Button mode="contained" onPress={onSave}>
+              <Button mode="contained" onPress={onSave} disabled={disableSave}>
                 {"Save"}
               </Button>
             ),

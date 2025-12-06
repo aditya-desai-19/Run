@@ -59,11 +59,14 @@ export default function DateTime({
         padding: 16,
       }}
     >
-      <Text variant="titleMedium">{"Start"}</Text>
-      <View style={{ display: "flex", flexDirection: "row", gap: 2 }}>
+      <Text variant="titleMedium">
+        {"Start"}
+        <Text style={{ color: "red" }}>{"*"}</Text>
+      </Text>
+      <View style={{ display: "flex", flexDirection: "row", gap: 1 }}>
         <Chip
           onPress={onDatePress}
-          style={{ padding: 4, backgroundColor: "transparent" }}
+          style={{ padding: 2, backgroundColor: "transparent" }}
         >
           <Text variant="bodyLarge">{dateValue}</Text>
         </Chip>
@@ -77,9 +80,9 @@ export default function DateTime({
         />
         <Chip
           onPress={onTimePress}
-          style={{ padding: 4, backgroundColor: "transparent" }}
+          style={{ padding: 2, backgroundColor: "transparent" }}
         >
-          <Text variant="bodyLarge">{`${hours} : ${minutes}`}</Text>
+          <Text variant="bodyLarge">{`${hours} : ${minutes} ${hours > 12 ? "pm" : "am"}`}</Text>
         </Chip>
         <TimePickerModal
           visible={showTime}

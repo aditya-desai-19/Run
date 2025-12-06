@@ -14,7 +14,7 @@ function DateDurationComponent({
   duration,
 }: DateTimeProps & DurationProps) {
   return (
-    <View style={{ display: "flex", flexDirection: "column", gap: 5 }}>
+    <View style={{ display: "flex", flexDirection: "column", gap: 1 }}>
       <DateTime
         date={date}
         hours={hours}

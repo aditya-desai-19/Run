@@ -1,24 +1,24 @@
 import { TimeProps } from "@/components/activity/types"
 import { create } from "zustand"
 
-interface Activity {
+export interface Activity {
   title: string
   date: string
   time: TimeProps
-  duration: string
-  distance: string
+  duration: number
+  distance: number
   notes: string
 }
 
-const initialState = {
+const initialState: Activity = {
   title: "",
   date: "",
   time: {
     hours: 0,
     minutes: 0,
   },
-  duration: "",
-  distance: "",
+  duration: 0,
+  distance: 0,
   notes: "",
 }
 
@@ -28,8 +28,8 @@ interface ActivityState {
   updateTitle: (newTitle: string) => void
   updateDate: (newDate: string) => void
   updateTime: (newTime: TimeProps) => void
-  updateDuration: (newDuration: string) => void
-  updateDistance: (newDist: string) => void
+  updateDuration: (newDuration: number) => void
+  updateDistance: (newDist: number) => void
   updateNotes: (newTitle: string) => void
 }
 
@@ -48,11 +48,11 @@ export const useActivityStore = create<ActivityState>()((set, get) => ({
     const currState = get().state
     set({ state: { ...currState, time: time } })
   },
-  updateDuration: (duration: string) => {
+  updateDuration: (duration: number) => {
     const currState = get().state
     set({ state: { ...currState, duration: duration } })
   },
-  updateDistance: (newDistance: string) => {
+  updateDistance: (newDistance: number) => {
     const currState = get().state
     set({ state: { ...currState, distance: newDistance } })
   },

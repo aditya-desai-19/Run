@@ -9,6 +9,7 @@ function InputLabelComponent({
   onChangeText,
   keyboardType,
   placeholder,
+  isRequiredField,
 }: InputLabelProps) {
   const theme = useTheme()
 
@@ -23,7 +24,10 @@ function InputLabelComponent({
         padding: 16,
       }}
     >
-      <Text variant="titleMedium">{label}</Text>
+      <Text variant="titleMedium">
+        {label}
+        {isRequiredField && <Text style={{ color: "red" }}>{"*"}</Text>}
+      </Text>
       <TextInput
         value={value}
         onChangeText={onChangeText}

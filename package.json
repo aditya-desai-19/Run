@@ -8,11 +8,12 @@
     "ios": "expo run:ios",
     "web": "expo start --web",
     "lint": "expo lint",
-    "format": "prettier \"**/*.{ts,tsx}\" --write",
+    "format": "prettier \"**/*.{ts,tsx,js}\" --write",
     "prepare": "husky"
   },
   "dependencies": {
     "@expo/vector-icons": "^15.0.3",
+    "@nozbe/watermelondb": "^0.28.0",
     "@react-navigation/bottom-tabs": "^7.4.0",
     "@react-navigation/elements": "^2.6.3",
     "@react-navigation/native": "^7.1.8",
@@ -44,11 +45,13 @@
     "zustand": "^5.0.9"
   },
   "devDependencies": {
+    "@babel/plugin-proposal-decorators": "^7.28.0",
     "@types/react": "~19.1.0",
     "eslint": "^9.25.0",
     "eslint-config-expo": "~10.0.0",
     "husky": "^9.1.7",
     "lint-staged": "^16.2.7",
+    "metro-react-native-babel-preset": "^0.77.0",
     "prettier": "3.7.3",
     "typescript": "~5.9.2"
   },
