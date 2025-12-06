@@ -3,45 +3,64 @@ import DateDuration from "@/components/activity/date-duration"
 import InputLabel from "@/components/activity/input-label"
 import Title from "@/components/activity/title"
 import { TimeProps } from "@/components/activity/types"
-import { useState } from "react"
 import { View } from "react-native"
+import dayjs from "dayjs"
+import { useActivityStore } from "@/zustand/store"
+import { useEffect } from "react"
 
 export default function Activity() {
-  const [title, setTitle] = useState<string>("")
-  const [distance, setDistance] = useState<string>("")
-  const [date, setDate] = useState<any>(null)
-  const [hoursAndMinutes, setHoursAndMinutes] = useState<TimeProps>({
-    hours: 0,
-    minutes: 0,
-  })
-  const [duration, setDuration] = useState<string>("")
-  const [notes, setNotes] = useState<string>("")
+  const dayjsObj = dayjs()
+  const currHour = parseInt(dayjsObj.format("HH"))
+  const currMin = parseInt(dayjsObj.format("mm"))
+
+  const {
+    state,
+    updateTitle,
+    updateDistance,
+    updateDuration,
+    updateDate,
+    updateNotes,
+    updateTime,
+    reset,
+  } = useActivityStore()
+
+  const { title, date, distance, duration, notes, time } = state
 
   const onChangeTitle = (text: string) => {
     if (text.length > 25) return
-    setTitle(text)
+    updateTitle(text)
   }
 
   const onDistanceChange = (text: string) => {
-    setDistance(text)
+    updateDistance(text)
   }
 
   const onChangeDuration = (text: string) => {
-    setDuration(text)
+    updateDuration(text)
   }
 
-  const onConfirmDate = (params: any) => {
-    if (!params.date) return
-    setDate(params.date)
+  const onConfirmDate = (date: Date) => {
+    updateDate(date.toISOString())
   }
 
   const onConfirmTime = (hm: TimeProps) => {
-    setHoursAndMinutes(hm)
+    updateTime(hm)
   }
 
   const onNotesChange = (text: string) => {
-    setNotes(text)
+    updateNotes(text)
   }
+
+  useEffect(() => {
+    updateTime({
+      hours: currHour,
+      minutes: currMin,
+    })
+
+    return () => {
+      reset()
+    }
+  }, [])
 
   return (
     <View style={{ width: "100%" }}>
@@ -54,8 +73,8 @@ export default function Activity() {
       />
       <DateDuration
         date={date}
-        hours={hoursAndMinutes.hours}
-        minutes={hoursAndMinutes.minutes}
+        hours={time.hours}
+        minutes={time.minutes}
         duration={duration}
         onChangeDuration={onChangeDuration}
         onConfirmDate={onConfirmDate}

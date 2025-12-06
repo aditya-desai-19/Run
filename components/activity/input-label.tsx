@@ -1,5 +1,5 @@
 import { View } from "react-native"
-import { Text, TextInput } from "react-native-paper"
+import { Text, TextInput, useTheme } from "react-native-paper"
 import { InputLabelProps } from "./types"
 import withDivider from "./with-divider"
 
@@ -10,6 +10,8 @@ function InputLabelComponent({
   keyboardType,
   placeholder,
 }: InputLabelProps) {
+  const theme = useTheme()
+
   return (
     <View
       style={{
@@ -28,8 +30,8 @@ function InputLabelComponent({
         keyboardType={keyboardType}
         placeholder={placeholder}
         underlineColor="transparent"
-        activeOutlineColor="transparent"
         activeUnderlineColor="transparent"
+        cursorColor={theme.colors.primary}
         style={{ backgroundColor: "transparent" }}
       />
     </View>

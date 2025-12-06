@@ -1,11 +1,12 @@
 import { View } from "react-native"
-import { Text, TextInput } from "react-native-paper"
+import { Text, TextInput, useTheme } from "react-native-paper"
 import { DurationProps } from "./types"
 
 export default function Duration({
   duration,
   onChangeDuration,
 }: DurationProps) {
+  const theme = useTheme()
   return (
     <View
       style={{
@@ -24,8 +25,8 @@ export default function Duration({
         value={duration}
         onChangeText={onChangeDuration}
         underlineColor="transparent"
-        activeOutlineColor="transparent"
         activeUnderlineColor="transparent"
+        cursorColor={theme.colors.primary}
         style={{ backgroundColor: "transparent" }}
       />
     </View>
