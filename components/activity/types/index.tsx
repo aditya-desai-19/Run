@@ -12,6 +12,7 @@ export interface InputLabelProps {
   keyboardType?: KeyboardTypeOptions
   placeholder?: string
   isRequiredField?: boolean
+  unit?: string
 }
 
 export interface TimeProps {

@@ -31,6 +31,7 @@ export default function Duration({
         activeUnderlineColor="transparent"
         cursorColor={theme.colors.primary}
         style={{ backgroundColor: "transparent" }}
+        right={<TextInput.Affix text=" mins" />}
       />
     </View>
   )

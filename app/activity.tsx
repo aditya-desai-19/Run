@@ -89,6 +89,7 @@ export default function Activity() {
         keyboardType="decimal-pad"
         placeholder="In km"
         isRequiredField
+        unit="km"
       />
       <AddNotes value={notes} onChangeText={onNotesChange} />
     </View>

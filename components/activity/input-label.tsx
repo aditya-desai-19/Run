@@ -10,6 +10,7 @@ function InputLabelComponent({
   keyboardType,
   placeholder,
   isRequiredField,
+  unit = "",
 }: InputLabelProps) {
   const theme = useTheme()
 
@@ -37,6 +38,7 @@ function InputLabelComponent({
         activeUnderlineColor="transparent"
         cursorColor={theme.colors.primary}
         style={{ backgroundColor: "transparent" }}
+        right={<TextInput.Affix text={` ${unit}`} />}
       />
     </View>
   )
